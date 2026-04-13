@@ -1,35 +1,49 @@
-async function gen(){
+async function gen() {
 
- let k=document.getElementById("kw").value;
- if(!k) return alert("Enter keyword");
+  let k = document.getElementById("kw").value.trim();
+  let res = document.getElementById("res");
 
- let res=document.getElementById("res");
- res.innerHTML="Loading...";
+  // تحقق من الإدخال
+  if (!k) {
+    alert("Enter keyword");
+    return;
+  }
 
- try{
+  res.innerHTML = "⏳ Generating...";
 
-   let r=await fetch("https://fahmyai.onrender.com/generate", {...})
-     method:"POST",
-     headers:{"Content-Type":"application/json"},
-     body:JSON.stringify({keyword:k})
-   });
+  try {
 
-names = names.slice(0,5);
-   res.innerHTML="";
+    let r = await fetch("https://fahmyai.onrender.com/generate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ keyword: k })
+    });
 
-   names.forEach(n=>{
-     let d=n+".com";
+    if (!r.ok) {
+      throw new Error("Server error");
+    }
 
-     res.innerHTML+=`
-     <div class="card">
-       <h3>${d}</h3>
-       <button onclick="navigator.clipboard.writeText('${d}')">Copy</button>
-       <a href="https://www.namecheap.com/domains/registration/results/?domain=${d}&aff=YOUR_ID" target="_blank">
-       <button>Buy</button></a>
-     </div>`;
-   });
+    let names = await r.json();
 
- }catch{
-   res.innerHTML="Error";
- }
+    // عرض النتائج بشكل جميل
+    res.innerHTML = names.map(n => `
+      <div style="
+        padding:10px;
+        margin:5px;
+        border:1px solid #ddd;
+        border-radius:8px;
+        background:#f9f9f9;
+        font-weight:bold;
+      ">
+        ${n}.com
+      </div>
+    `).join("");
+
+  } catch (e) {
+    console.error(e);
+    res.innerHTML = "❌ Error connecting to server";
+  }
+
 }
