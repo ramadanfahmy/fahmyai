@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 // ضع الـ API Key هنا
-const API_KEY = "PUT_YOUR_GOOGLE_API_KEY";
+const API_KEY = "AIzaSyAFDG6xvBnthustFCl7czaNCCtXR-EwfwM";
 
 // استلام الطلبات
 app.post("/generate", async (req, res) => {
