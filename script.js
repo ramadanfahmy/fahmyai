@@ -3,7 +3,6 @@ async function gen() {
   let k = document.getElementById("kw").value.trim();
   let res = document.getElementById("res");
 
-  // تحقق من الإدخال
   if (!k) {
     alert("Enter keyword");
     return;
@@ -13,6 +12,8 @@ async function gen() {
 
   try {
 
+    console.log("Sending request...");
+
     let r = await fetch("https://fahmyai.onrender.com/generate", {
       method: "POST",
       headers: {
@@ -21,29 +22,17 @@ async function gen() {
       body: JSON.stringify({ keyword: k })
     });
 
-    if (!r.ok) {
-      throw new Error("Server error");
-    }
+    console.log("Response:", r);
 
-    let names = await r.json();
+    let data = await r.json();
 
-    // عرض النتائج بشكل جميل
-    res.innerHTML = names.map(n => `
-      <div style="
-        padding:10px;
-        margin:5px;
-        border:1px solid #ddd;
-        border-radius:8px;
-        background:#f9f9f9;
-        font-weight:bold;
-      ">
-        ${n}.com
-      </div>
-    `).join("");
+    console.log("Data:", data);
+
+    res.innerHTML = JSON.stringify(data);
 
   } catch (e) {
-    console.error(e);
-    res.innerHTML = "❌ Error connecting to server";
+    console.error("ERROR:", e);
+    res.innerHTML = "❌ Error";
   }
 
 }
