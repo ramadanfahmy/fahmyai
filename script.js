@@ -14,8 +14,7 @@ async function gen(){
      body:JSON.stringify({keyword:k})
    });
 
-   let names=await r.json();
-
+names = names.slice(0,5);
    res.innerHTML="";
 
    names.forEach(n=>{
