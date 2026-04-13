@@ -1,28 +1,11 @@
-import fetch from "node-fetch";
-import http from "http";
+const express = require("express");
+const app = express();
 
-const PORT = 3000;
+app.use(express.json());
 
-const server = http.createServer(async (req, res) => {
-
-  if (req.url === "/api" && req.method === "GET") {
-
-    const response = await fetch("https://api.chucknorris.io/jokes/random");
-    const data = await response.json();
-
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify({
-      message: "API شغالة تمام ✅",
-      joke: data.value
-    }));
-
-  } else {
-    res.writeHead(404);
-    res.end("Not Found");
-  }
-
+app.post("/chat", (req, res) => {
+  res.json({ reply: "AI working ✅" });
 });
 
-server.listen(PORT, () => {
-  console.log(Server شغال على http://localhost:${PORT});
-});
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log("Server started"));
