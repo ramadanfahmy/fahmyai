@@ -1,38 +1,26 @@
-async function gen() {
 
-  let k = document.getElementById("kw").value.trim();
-  let res = document.getElementById("res");
+async function sendMessage() {
+  const input = document.getElementById("userInput");
+  const chatBox = document.getElementById("chatBox");
+  const message = input.value;
 
-  if (!k) {
-    alert("Enter keyword");
-    return;
-  }
+  if (!message) return;
 
-  res.innerHTML = "⏳ Generating...";
+  chatBox.innerHTML += `<div class="user">${message}</div>`;
+  input.value = "";
 
   try {
-
-    console.log("Sending request...");
-
-    let r = await fetch("https://fahmyai.onrender.com/generate", {
+    const res = await fetch("/api/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ keyword: k })
+      body: JSON.stringify({ message })
     });
 
-    console.log("Response:", r);
-
-    let data = await r.json();
-
-    console.log("Data:", data);
-
-    res.innerHTML = JSON.stringify(data);
-
-  } catch (e) {
-    console.error("ERROR:", e);
-    res.innerHTML = "❌ Error";
+    const data = await res.json();
+    chatBox.innerHTML += `<div class="bot">${data.reply}</div>`;
+  } catch (err) {
+    chatBox.innerHTML += `<div class="bot">Error connecting to AI server</div>`;
   }
-
 }
