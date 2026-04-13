@@ -1,14 +1,12 @@
 {
   "name": "fahmyai-api",
   "version": "1.0.0",
-  "description": "API project",
+  "description": "Simple API",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "node-fetch": "3.3.2"
   }
