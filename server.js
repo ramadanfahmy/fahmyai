@@ -6,11 +6,23 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const API_KEY = "YOUR_API_KEY"; // ⚠️ مهم جدًا (هقولك ليه تحت)
+// 🔒 API KEY من Environment (مش في الكود)
+const API_KEY = process.env.API_KEY;
 
+// ✅ Route للتأكد إن السيرفر شغال
+app.get("/", (req, res) => {
+  res.send("FahmyAI API is working 🚀");
+});
+
+// ✅ API لتوليد أسماء دومينات
 app.post("/generate", async (req, res) => {
 
   const { keyword } = req.body;
+
+  // تحقق من الإدخال
+  if (!keyword) {
+    return res.status(400).json(["Please enter a keyword"]);
+  }
 
   try {
 
@@ -22,7 +34,7 @@ app.post("/generate", async (req, res) => {
         body: JSON.stringify({
           contents: [{
             parts: [{
-              text: `Generate 7 brandable domain names for: ${keyword}`
+              text: `Generate 7 short, brandable, catchy domain names for: ${keyword}. Only return names without explanation.`
             }]
           }]
         })
@@ -33,6 +45,7 @@ app.post("/generate", async (req, res) => {
 
     let text = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
 
+    // تنظيف الأسماء
     let names = text
       .split("\n")
       .map(n => n.replace(/[^a-zA-Z0-9]/g, ""))
@@ -40,10 +53,13 @@ app.post("/generate", async (req, res) => {
 
     res.json(names.slice(0, 7));
 
-  } catch (e) {
-    res.status(500).json(["error"]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(["Server error"]);
   }
 
 });
 
-app.listen(3000, () => console.log("Server Running 🚀"));
+// ✅ تشغيل السيرفر
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT} 🚀`));
