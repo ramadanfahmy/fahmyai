@@ -8,7 +8,7 @@ async function gen(){
 
  try{
 
-   let r=await fetch("https://YOUR-APP.onrender.com/generate",{
+   let r=await fetch("https://fahmyai.onrender.com/generate",{
      method:"POST",
      headers:{"Content-Type":"application/json"},
      body:JSON.stringify({keyword:k})
