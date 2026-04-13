@@ -3,44 +3,82 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>FahmyAI - AI Domain Generator</title>
 <meta name="description" content="Generate domain names with AI and buy instantly.">
+
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<!-- NAV -->
 <div class="nav">
-<div class="logo">🚀 FahmyAI</div>
-<div>
-<a href="about.html">About</a>
-<a href="privacy.html">Privacy</a>
-<a href="terms.html">Terms</a>
+<div class="logo">
+<i class="fa-solid fa-bolt"></i> FahmyAI
+</div>
+
+<div class="links">
+<a href="about.html"><i class="fa-solid fa-user"></i> About</a>
+<a href="privacy.html"><i class="fa-solid fa-lock"></i> Privacy</a>
+<a href="terms.html"><i class="fa-solid fa-file"></i> Terms</a>
 </div>
 </div>
 
+<!-- HERO -->
 <div class="hero">
-<h1>Generate Domain Names with AI</h1>
-<input id="kw" placeholder="Enter keyword">
-<button onclick="gen()">Generate</button>
+<h1>🚀 Generate Domain Names with AI</h1>
+<p>Turn your ideas into powerful brand names instantly</p>
+
+<div class="search-box">
+<input id="kw" placeholder="Enter keyword...">
+<button onclick="gen()">
+<i class="fa-solid fa-wand-magic-sparkles"></i> Generate
+</button>
+</div>
 </div>
 
-<div id="res"></div>
+<!-- RESULTS -->
+<div id="res" class="results"></div>
 
+<!-- BUY SECTION -->
 <div class="section">
-<h2>💰 Buy Domains</h2>
-<a href="https://www.namecheap.com/?aff=YOUR_ID" target="_blank">Namecheap</a>
-<a href="https://www.godaddy.com" target="_blank">GoDaddy</a>
+<h2><i class="fa-solid fa-cart-shopping"></i> Buy Domains</h2>
+
+<div class="cards">
+<a class="card" href="https://www.namecheap.com" target="_blank">
+<i class="fa-solid fa-tag"></i> Namecheap
+</a>
+
+<a class="card" href="https://www.godaddy.com" target="_blank">
+<i class="fa-solid fa-globe"></i> GoDaddy
+</a>
+</div>
 </div>
 
+<!-- AI TOOLS -->
 <div class="section">
-<h2>🤖 AI Tools</h2>
-<a href="YOUR_COPYAI_AFF">Copywriting Tool</a>
-<a href="YOUR_LOOKA_AFF">Logo Maker</a>
+<h2><i class="fa-solid fa-robot"></i> AI Tools</h2>
+
+<div class="cards">
+
+<a class="card" href="https://www.copy.ai" target="_blank">
+<i class="fa-solid fa-pen"></i> Copy AI
+</a>
+
+<a class="card" href="https://www.looka.com" target="_blank">
+<i class="fa-solid fa-image"></i> Logo Maker
+</a>
+
+</div>
 </div>
 
+<!-- FOOTER -->
 <div class="footer">
-<p>© 2026 FahmyAI</p>
+<p>© 2026 FahmyAI - Built with AI</p>
 </div>
 
 <script src="script.js"></script>
