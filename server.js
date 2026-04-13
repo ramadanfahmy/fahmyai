@@ -1,3 +1,4 @@
+
 import express from "express";
 import cors from "cors";
 import fetch from "node-fetch";
@@ -57,7 +58,9 @@ app.post("/generate", async (req, res) => {
     console.error(error);
     res.status(500).json(["Server error"]);
   }
-
+app.use(cors({
+  origin: "*"
+}));
 });
 
 // ✅ تشغيل السيرفر
