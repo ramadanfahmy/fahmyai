@@ -1,10 +1,10 @@
 {
   "name": "fahmyai-api",
   "version": "1.0.0",
-  "description": "My API project",
-  "main": "index.js",
+  "description": "API project",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
