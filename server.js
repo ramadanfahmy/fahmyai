@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const API_KEY = "AIzaSyAFDG6xvBnthustFCl7czaNCCtXR-EwfwM";
+const API_KEY = "YOUR_API_KEY"; // ⚠️ مهم جدًا (هقولك ليه تحت)
 
 app.post("/generate", async (req, res) => {
 
@@ -22,7 +22,7 @@ app.post("/generate", async (req, res) => {
         body: JSON.stringify({
           contents: [{
             parts: [{
-              text: Generate 7 brandable domain names for: ${keyword}
+              text: `Generate 7 brandable domain names for: ${keyword}`
             }]
           }]
         })
